@@ -2,8 +2,12 @@
 #ifndef iostream
 #include<iostream>
 #endif // !iostream
-
-
+/*
+Fraction(int a,int b);
+operator +
+cout<<Fraction(1,2);//screen will show"1/2"
+It can auto simlify the Fraction.
+*/
 struct Fraction {
 	Fraction(int const &a, int const &b) :numerator(a), denomiator(b) { init(); }
 	Fraction() :numerator(0), denomiator(1) {}
