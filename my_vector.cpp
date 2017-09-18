@@ -1,6 +1,6 @@
-//#include<iostream>
-//using std::cout;
-//using std::endl;
+#include<iostream>
+using std::cout;
+using std::endl;
 struct mvector {
 	mvector():list(nullptr),maxsize(1),size(0) {//3 constructor which can receive int,list or null;
 		list = new int[0];
@@ -66,6 +66,17 @@ struct mvector {
 			list[i++] = x;
 	}
 
+	mvector& erase(int const &n) {
+		lerase(n);
+		return *this;
+	}
+
+	mvector& erase_value(int const &n) {
+		for (int i = 0; i < size; ++i)
+			if (list[i] == n)
+				lerase(i);
+		return *this;
+	}
 	~mvector() {
 		if (list){
 			delete[] list;
@@ -73,6 +84,11 @@ struct mvector {
 		}
 	}
 private:
+	void lerase(int n) {
+		init(-1);
+		for (int i = n; i < size; ++i)
+			list[i] = list[i + 1];
+	}
 	void linsert(int const &n,int const &count = 1) {//It can clear a room for a new data
 		init(count);
 		for (int i = size + count - 1; i > n; --i)
@@ -104,3 +120,11 @@ private:
 	size_t size;
 	size_t maxsize;
 };
+
+int main() {
+	mvector(1);
+	mvector a({1,2,3});
+	a.push_back({ 1,2,3 });
+	a.erase(1);
+	return 0;
+}
